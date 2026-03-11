@@ -1,8 +1,17 @@
-value: false
+enable-locator-bar: false
 ignored-worlds:
   - disabled_world
   - another_world
   - yet_another_world
 
 console-prefix: "[LocatorBarRemover] "
-console-suffix: ""  
+console-suffix: ""
+
+messages:
+  prefix: "§cLocatorBarRemover §8» §7"
+  no-permission: "You don't have permission to use this command."
+  reload-success: "Configuration reloaded successfully."
+  invalid-subcommand: "Invalid subcommand. Use /locatorbarremover reload to reload the configuration."
+  usage: "Usage: /%label% <subcommand>"
+  applied: "LocatorBarRemover gamerules applied."
+  reload-applied: "LocatorBarRemover config reloaded and gamerules applied."
