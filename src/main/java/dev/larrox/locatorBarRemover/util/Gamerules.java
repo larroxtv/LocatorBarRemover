@@ -7,8 +7,6 @@ import org.bukkit.World;
 
 import java.util.List;
 
-import static org.bukkit.Bukkit.getLogger;
-
 public class Gamerules {
 
     private final LocatorBarRemover plugin;
@@ -18,26 +16,28 @@ public class Gamerules {
     }
 
     public void apply() {
-        String gamerule = "locatorBar";
-        boolean value = plugin.getConfig().getBoolean("value", false);
+        GameRule<Boolean> gamerule = GameRule.LOCATOR_BAR;
+
+        boolean value = plugin.getConfig().getBoolean("enable-locator-bar", false);
         List<String> ignoredWorlds = plugin.getConfig().getStringList("ignored-worlds");
+        String consolePrefix = plugin.getConfig().getString("console-prefix", "[LocatorBarRemover] ");
+        String consoleSuffix = plugin.getConfig().getString("console-suffix", "");
 
         for (World world : Bukkit.getWorlds()) {
-            if (!ignoredWorlds.contains(world.getName())) {
-                if (world.isGameRule(gamerule)) {
-                    if (!world.getGameRuleValue(GameRule.LOCATOR_BAR)) {
-                        getLogger().info("Gamerule " + gamerule + " already set in world: " + world.getName() + ", skipping.");
-                        continue;
-                    }
-                    world.setGameRuleValue(gamerule, Boolean.toString(value));
-                    getLogger().info("Set gamerule " + gamerule + "=" + value + " in world: " + world.getName());
-                } else {
-                    getLogger().warning("World '" + world.getName() + "' does not support gamerule: " + gamerule);
-                    Bukkit.getServer().getVersion();
-                }
+            if (ignoredWorlds.contains(world.getName())) {
+                continue;
             }
+
+            Boolean currentValue = world.getGameRuleValue(gamerule);
+            if (currentValue != null && currentValue == value) {
+                plugin.getLogger().info(consolePrefix + "LocatorBar already set to " + value
+                        + " in world: " + world.getName() + ", skipping." + consoleSuffix);
+                continue;
+            }
+
+            world.setGameRule(gamerule, value);
+            plugin.getLogger().info(consolePrefix + "Set gamerule LocatorBar=" + value
+                    + " in world: " + world.getName() + consoleSuffix);
         }
     }
-
 }
-
