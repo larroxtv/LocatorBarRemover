@@ -8,7 +8,7 @@
 
 ## ⚡ Features
 
-- 🟢 **Restores the classic XP like in older Minecraft versions
+- 🟢 **Restores** the classic XP like in older Minecraft versions
 - 🪶 **Lightweight** — zero performance impact on your server
 - 🔌 **Plug & Play** — no configuration needed, just drop it in and go
 - ♻️ **Always up-to-date** — actively maintained for the latest Paper/Spigot versions
