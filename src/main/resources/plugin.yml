@@ -1,10 +1,11 @@
 name: locatorBarRemover
-version: '1.1.1'
+version: '${project.version}'
 main: dev.larrox.locatorBarRemover.LocatorBarRemover
 api-version: '1.21'
+folia-supported: true
 prefix: LocatorBarRemover
 authors: [ Larrox ]
-description: Removes the Anoying LocatorBar from the 1.21.6 update.
+description: Removes the annoying locator bar introduced in Minecraft 1.21.6.
 website: larrox.dev
 commands:
   locatorbarremover:
